@@ -1,180 +1,94 @@
+char ch  ='0';
+void setup() {
+  // put your setup code here, to run once:
+  Serial.begin(9600);
+  pinMode(2,OUTPUT);//clock
+  pinMode(3,OUTPUT);//PWM
+  pinMode(4,OUTPUT);
 
-//motor 1
-int inA1 = 6;
-int inA2 = 7;
-int enA = 5;
-
-//motor 2
-int inB1 = 12;
-int inB2 = 13;
-int enB = 9;
-
-//motor 3
-int inC1 = 4;
-int inC2 = 8;
-int enC = 11;
-
-//motor 4
-int inD1 = 3;
-int inD2 = 2;
-int enD = 10;
+  pinMode(7,OUTPUT);//clock
+  pinMode(8,OUTPUT);
+  pinMode(9,OUTPUT);//PWM
+}
 
 
-void setup(){
-
-  Serial.begin(9600); 
+void stop_car()
+{ 
+  //Serial.println("stop");
+  digitalWrite(2, LOW); 
+  digitalWrite(4, LOW); 
+  digitalWrite(7, LOW); 
+  digitalWrite(8, LOW); 
   
-  pinMode(enA, OUTPUT);
-  pinMode(inA1, OUTPUT);
-  pinMode(inA2, OUTPUT);
 
-  pinMode(enB, OUTPUT);
-  pinMode(inB1, OUTPUT);
-  pinMode(inB2, OUTPUT);
-
-  pinMode(enC, OUTPUT);
-  pinMode(inC1, OUTPUT);
-  pinMode(inC2, OUTPUT);
-
-  pinMode(enD, OUTPUT);
-  pinMode(inD1, OUTPUT);
-  pinMode(inD2, OUTPUT);
 }
-
-void stop_car(){
-  digitalWrite(inA1, LOW);
-  digitalWrite(inA2, LOW);
-
-  digitalWrite(inB1, LOW);
-  digitalWrite(inB2, LOW);
-
-  digitalWrite(inC1, LOW);
-  digitalWrite(inC2, LOW);
-
-  digitalWrite(inD1, LOW);
-  digitalWrite(inD2, LOW);
-}
-
-void fast_reverse(){
-  analogWrite(enA, 255);
-  analogWrite(enB, 255);
-  analogWrite(enC, 255);
-  analogWrite(enD, 255);
-
-  digitalWrite(inA1, LOW);
-  digitalWrite(inA2, HIGH);
-
-  digitalWrite(inB1, LOW);
-  digitalWrite(inB2, HIGH);
-
-  digitalWrite(inC1, LOW);
-  digitalWrite(inC2, HIGH);
-
-  digitalWrite(inD1, LOW);
-  digitalWrite(inD2, HIGH);
-//  
-}
-
-void slow_reverse(){
-  analogWrite(enA, 150);
-  analogWrite(enB, 150);
-  analogWrite(enC, 150);
-  analogWrite(enD, 150);
-
-  digitalWrite(inA1, LOW);
-  digitalWrite(inA2, HIGH);
-
-  digitalWrite(inB1, LOW);
-  digitalWrite(inB2, HIGH);
-
-  digitalWrite(inC1, LOW);
-  digitalWrite(inC2, HIGH);
-
-  digitalWrite(inD1, LOW);
-  digitalWrite(inD2, HIGH);
-//  
-}
-
-void fast_forward(){
-  analogWrite(enA, 255);
-  analogWrite(enB, 255);
-  analogWrite(enC, 255);
-  analogWrite(enD, 255);
-
-  digitalWrite(inA1, HIGH);
-  digitalWrite(inA2, LOW);
-
-  digitalWrite(inB1, HIGH);
-  digitalWrite(inB2, LOW);
-
-  digitalWrite(inC1, HIGH);
-  digitalWrite(inC2, LOW);
-
-  digitalWrite(inD1, HIGH);
-  digitalWrite(inD2, LOW);
-//  
-}
-
-void slow_forward(){
-  analogWrite(enA, 150);
-  analogWrite(enB, 150);
-  analogWrite(enC, 150);
-  analogWrite(enD, 150);
-
-  digitalWrite(inA1, HIGH);
-  digitalWrite(inA2, LOW);
-
-  digitalWrite(inB1, HIGH);
-  digitalWrite(inB2, LOW);
-
-  digitalWrite(inC1, HIGH);
-  digitalWrite(inC2, LOW);
-
-  digitalWrite(inD1, HIGH);
-  digitalWrite(inD2, LOW);
+void fast_reverse()
+{
+  analogWrite(3, 255); 
+  analogWrite(9, 255); 
+  //Serial.println("fast_F");
+  digitalWrite(2, HIGH); 
+  digitalWrite(4, LOW); 
+  digitalWrite(7, HIGH); 
+  digitalWrite(8, LOW); 
+  //delay(3000);
+} 
+void slow_reverse()
+{ 
+  analogWrite(3, 150); 
+  analogWrite(9, 150); 
+  //Serial.println("slow_F");
+  digitalWrite(2, HIGH); 
+  digitalWrite(4, LOW); 
+  digitalWrite(7, HIGH); 
+  digitalWrite(8, LOW); 
+  //delay(3000);
   
-}
-
-
-void right(){
-  analogWrite(enA, 255);
-  analogWrite(enD, 255);
-
-  digitalWrite(inA1, LOW);
-  digitalWrite(inA2, LOW);
-
-  digitalWrite(inB1, HIGH);
-  digitalWrite(inB2, LOW);
-
-  digitalWrite(inC1, HIGH);
-  digitalWrite(inC2, LOW);
-
-  digitalWrite(inD1, LOW);
-  digitalWrite(inD2, LOW);
+} 
+void fast_forward()
+{ 
+  analogWrite(3, 255); 
+  analogWrite(9, 255); 
+ // Serial.println("Fast_R");
+  digitalWrite(2, LOW); 
+  digitalWrite(4, HIGH); 
+  digitalWrite(7, LOW); 
+  digitalWrite(8, HIGH); 
+  //delay(3000); 
+} 
+void slow_forward()
+{ 
+  analogWrite(3, 150); 
+  analogWrite(9, 150); 
+  //Serial.println("slow_R");  
+  digitalWrite(2, LOW); 
+  digitalWrite(4, HIGH); 
+  digitalWrite(7, LOW); 
+  digitalWrite(8, HIGH); 
+  //delay(3000); 
+} 
+void right()
+{ 
+  analogWrite(9, 255); 
+  //Serial.println("left");
+  digitalWrite(2, HIGH); 
+  digitalWrite(4, LOW); 
+  digitalWrite(7, LOW); 
+  digitalWrite(8, LOW); 
+  //delay(3000);
   
-}
+} 
+void left()
+{ 
+  analogWrite(3, 255); 
+  //Serial.println("Right");
+  digitalWrite(2, LOW); 
+  digitalWrite(4, LOW); 
+  digitalWrite(7, HIGH); 
+  digitalWrite(8, LOW); 
+  //delay(3000);
 
-void left(){
- 
-  analogWrite(enB, 255);
-  analogWrite(enC, 255);
- 
-
-  digitalWrite(inA1, HIGH);
-  digitalWrite(inA2, LOW);
-
-  digitalWrite(inB1, LOW);
-  digitalWrite(inB2, LOW);
-
-  digitalWrite(inC1, LOW);
-  digitalWrite(inC2, LOW);
-
-  digitalWrite(inD1, HIGH);
-  digitalWrite(inD2, LOW);
-
- 
-  
-}
+} 
 
 void loop(){
   if(Serial.available() > 0)  
@@ -204,6 +118,3 @@ void loop(){
           
      
 }
-
-
-  
